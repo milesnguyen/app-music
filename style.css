@@ -40,6 +40,7 @@
     align-items: center;
     background: url(./1308014.jpg) no-repeat;
     background-size: cover;
+    overflow: hidden;
   }
   
   html {
@@ -142,9 +143,7 @@
 .btn-toggle-play {
     font-size: 6rem;
 }
-.btn:active {
-    color: #ffffff;
-}
+
 .btn:hover {
     color: #ffffff;
 }
