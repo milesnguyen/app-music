@@ -10,28 +10,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Web nghe nhạc</title>
+    <link rel="shortcut icon" href="./img/ic.png" type="image/x-icon">
+    <title>Music Web</title>
 </head>
 <body>
     <div class="apps">
 
-            <div class="music-dashboard bg">
-                <div class="music-title">Real</div>
-                <div class="music-singer"></div>
-                <div class="music-menu"><i class="fa fa-music playlist-btn"></i></div>
+            <div class="music-dashboard">
+                <div class="music-menu">
+                    <i class="fas fa-chevron-down"></i>
+                    <p>Now Playing</p>
+                    <span class="fas fa-list playlist-btn"></span></div>
+                
                 <div class="music-cd">
                     <div class="music-cd__thumb" style="background-image: url();">
                 </div>
                 
                 </div>
-                
+                <div class="music-title">Real</div>
+                <div class="music-singer"></div>
                 <div class="music-control">
                     <div class="music-control__btn">
                         <div class="btn btn-repeat"><i class="fas fa-redo"></i></div>
                         <div class="btn btn-prev"><i class="fas fa-step-backward"></i></div>
                         <div class="btn btn-toggle-play">
-                            <i class="fas fa-play" id="icon-play"></i>
-                            <i class="fas fa-pause" id="icon-pause"></i>
+                            <i class="fa-solid fa-circle-play" id="icon-play"></i>
+                            <i class="fa-solid fa-circle-pause" id="icon-pause"></i>
                         </div>
                         <div class="btn btn-next"><i class="fas fa-step-forward"></i></div>
                         <div class="btn btn-random"><i class="fas fa-random"></i></div>
@@ -49,7 +53,7 @@
                 </div>
             </div>
             
-            <div class="music-playlist bg">
+            <div class="music-playlist non-active">
                 <div class="music-header">
                     <p>Play List</p>
                     <i class="far fa-times-circle music-btn__off"></i></div>

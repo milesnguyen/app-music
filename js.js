@@ -25,6 +25,9 @@ const playlist = $(".music-playlist");
     const timeDuration = $('.progress-time__current');
     const repeatBtn = $('.btn-repeat');
     const offBtn = $('.music-btn__off');
+    const durationElement = $('.progress-time__duration')
+    const currentElement = $('.progress-time__current')
+
 
 const app = {
     currentIndex: 0,
@@ -174,16 +177,16 @@ const app = {
       
           playlistBtn.addEventListener('click',()=>{
 
-            playlistBtn.classList.toggle('actives');
-            playlist.classList.toggle('actives');
+            playlistBtn.classList.toggle('active');
+            playlist.classList.toggle('active');
             playlist.classList.remove('non-active')
             offBtn.classList.toggle('active');
             });
             
             offBtn.onclick = function(){
-                playlistBtn.classList.remove('actives');
-                playlist.classList.remove('actives');
-                playlist.classList.remove('non-active')
+                playlistBtn.classList.remove('active');
+                playlist.classList.remove('active');
+                // playlist.classList.toggl('non-active')
                 offBtn.classList.remove('active');
             }
           // Khi song được play
@@ -210,6 +213,7 @@ const app = {
             const seekTIme = audio.duration / 100 * e.target.value
             audio.currentTime = seekTIme
           }
+    
           nextBtn.onclick = function(){
             if(_this.isRandom){
                 _this.playRandomSong(); // Xử lí random song
@@ -218,7 +222,7 @@ const app = {
             }
             audio.play();
             _this.render();
-            _this.scrollToActiveSong();
+            
           }
           prevBtn.onclick = function(){
             if(_this.isRandom){
@@ -228,7 +232,7 @@ const app = {
             }
             audio.play();
             _this.render();
-            _this.scrollToActiveSong();
+            
           }
         randomBtn.onclick = function(e){
             _this.isRandom = !_this.isRandom;
@@ -253,12 +257,35 @@ const app = {
                 nextBtn.click()
             }
         }
-        
-        // playList.onclick = function(e) {
-        //     if (e.target.closest('.music-playlist__song:not(.active)')|| !e.target.closest('.song-option')) {
-        //         console.log(e.target)
-        //     }
-        // };
+
+        audio.ontimeupdate = function() {
+            const songCurrentTime = this.currentTime;
+            const songDurationTime = this.duration;
+            const progressWid = (songCurrentTime / songDurationTime) * 100;
+            progress.value = progressWid;
+
+            let currentMin = Math.floor(songCurrentTime / 60)
+            let currentSec = Math.floor(songCurrentTime % 60)
+            if(currentSec < 10) {
+                currentSec = '0'+ currentSec;
+            }
+            currentElement.innerText = `${currentMin}:${currentSec}`;
+
+            
+        }
+
+        audio.onloadeddata = function() {
+            const songCurrentTime = this.currentTime;
+            const songDurationTime = this.duration;
+            let durationMin = Math.floor(songDurationTime / 60)
+            let durationSec = Math.floor(songDurationTime % 60)
+            if(durationSec < 10) {
+                durationSec = '0'+ durationSec;
+            }
+            durationElement.innerText = `${durationMin}:${durationSec}`;
+        }
+
+       
         playList.onclick = function(e){
             const songNode = e.target.closest('.music-playlist__song:not(.active)');
             if(songNode ||e.target.closest('.song-option')){
