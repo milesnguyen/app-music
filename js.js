@@ -258,11 +258,20 @@ const app = {
             }
         }
 
+       
+       
+          progress.addEventListener("change", handleChangeBar);
+          function handleChangeBar() {
+            song.currentTime = progress.value;
+          }
         audio.ontimeupdate = function() {
-            const songCurrentTime = this.currentTime;
-            const songDurationTime = this.duration;
-            const progressWid = (songCurrentTime / songDurationTime) * 100;
-            progress.value = progressWid;
+            const songCurrentTime = audio.currentTime;
+            const songDurationTime = audio.duration;
+            const audioDuration = audio.duration; //method duration trả về độ dài của audio/video đó
+            if(!isNaN(audioDuration)){ 
+            const progressPercent = audio.currentTime / audio.duration * 100;
+            progress.value = progressPercent;
+            }
 
             let currentMin = Math.floor(songCurrentTime / 60)
             let currentSec = Math.floor(songCurrentTime % 60)
