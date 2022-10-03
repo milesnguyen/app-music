@@ -12,6 +12,7 @@ const playlist = $(".music-playlist");
 
     const player = $(".apps");
     const playList = $('.music-playlist-songs')
+    const dashboard = $('.apps');
     const heading = $('.music-title')
     const thumb = $('.music-cd__thumb')
     const sinGer = $('.music-singer')
@@ -27,6 +28,7 @@ const playlist = $(".music-playlist");
     const offBtn = $('.music-btn__off');
     const durationElement = $('.progress-time__duration')
     const currentElement = $('.progress-time__current')
+    const dark = $('.dark-btn');
 
 
 const app = {
@@ -189,6 +191,10 @@ const app = {
                 // playlist.classList.toggl('non-active')
                 offBtn.classList.remove('active');
             }
+
+            dark.onclick = function() {
+                dashboard.classList.toggle('active');
+            }
           // Khi song được play
           audio.onplay = function () {
             _this.isPlaying = true;
@@ -209,10 +215,10 @@ const app = {
             }
           }
 
-          progress.onchange = function(e){
-            const seekTIme = audio.duration / 100 * e.target.value
-            audio.currentTime = seekTIme
-          }
+          progress.oninput = function(e){
+            const seekTime = audio.duration / 100 * e.target.value;
+            audio.currentTime = seekTime;
+        };
     
           nextBtn.onclick = function(){
             if(_this.isRandom){
@@ -260,10 +266,7 @@ const app = {
 
        
        
-          progress.addEventListener("change", handleChangeBar);
-          function handleChangeBar() {
-            song.currentTime = progress.value;
-          }
+      
         audio.ontimeupdate = function() {
             const songCurrentTime = audio.currentTime;
             const songDurationTime = audio.duration;

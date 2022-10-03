@@ -1,0 +1,6 @@
+@media  (max-width:  46.1875em) {
+
+    .btn:hover {
+        color:  var(--primary-color) !important;
+    }
+        }

@@ -52,6 +52,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden !important;
   }  
 
 .apps #icon-pause{
@@ -77,6 +78,11 @@
 .music-dashboard {  
     z-index: 30;
     padding: 16px 16px 36px 16px;
+}
+/* .music-playlist.active, */
+body.active {
+    background-color: #ffffff !important;
+    transition: all 1s;
 }
 .music-title {
     font-size: 2rem;
